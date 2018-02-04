@@ -17,7 +17,7 @@
 <meta property="og:description" content="由于最近在学习数学建模，在解决预测性问题的时候接触了这个算法。学习了一点基础知识，本文就当作是我的一点心得体会吧，还望前面的你不要见笑。  简介">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/神经网络.png">
-<meta property="og:updated_time" content="2018-02-01T06:00:48.568Z">
+<meta property="og:updated_time" content="2018-02-04T13:14:09.772Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="浅谈神经网络">
 <meta name="twitter:description" content="由于最近在学习数学建模，在解决预测性问题的时候接触了这个算法。学习了一点基础知识，本文就当作是我的一点心得体会吧，还望前面的你不要见笑。  简介">
@@ -176,13 +176,148 @@
 </ul>
 <a id="more"></a>
 <ul>
-<li><h5 id="感知器"><a href="#感知器" class="headerlink" title="感知器"></a>感知器</h5></li>
+<li><h5 id="简单引入——感知器"><a href="#简单引入——感知器" class="headerlink" title="简单引入——感知器"></a>简单引入——感知器</h5></li>
 </ul>
 <p>一个系统有多个输入，假设他只能输出0或者1。当所有输入都是1，那么输出结果也是1，假设输入都是0，那么输出结果也是0。那么问题来了，当输入不全为0或为1的时候呢？</p>
 <p>此时，需要将输入的每个值附一个权重，我们约定当系统到达某一阈值时，便输出1。而阈值和权重的选取就是关键了，</p>
-<p>系统用数学公式简单的描述为：$y=\sum(x_i)w_i$</p>
+<p>系统用数学公式简单的描述为：</p>
+<p>$net_i=\sum(x_i)w_i$</p>
+<p>$y_i=f(net_i)$</p>
+<p>f称为激活函数，常见的激活函数分为两类：线性与非线性。而线性激活函数使用范围较窄。下面简单介绍一下：</p>
+<ul>
+<li><h5 id="常见激活函数"><a href="#常见激活函数" class="headerlink" title="常见激活函数"></a>常见激活函数</h5></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">表达式</th>
+<th>matlab函数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>线性函数</td>
+<td style="text-align:center">$f(x)=k*x+c$</td>
+<td>purelin</td>
+</tr>
+<tr>
+<td>阈值函数</td>
+<td style="text-align:center">$f(x)= \begin{cases} 1   &amp;\mbox{x&gt;c}\ 0  &amp;\mbox{x&lt;c}\end{cases}$</td>
+<td>ddencmp、thselect、wbmpen、wwdcbm</td>
+</tr>
+<tr>
+<td>s形函数</td>
+<td style="text-align:center">$f(x)=\frac{1}{1+e^{-ax}}$</td>
+<td>logsig</td>
+</tr>
+<tr>
+<td>双极s形函数</td>
+<td style="text-align:center">$f(x)=\frac{2}{1+e^{-ax}} -1$</td>
+<td>tansig</td>
+</tr>
+</tbody>
+</table>
 <p>目前为止，这权重和阈值都是主观给出的，但现实中很难估计它们的值，必需有一种方法，可以找出答案。</p>
 <p>这种方法就是试错法。其他参数都不变，<code>w</code>（或<code>b</code>）的微小变动，记作<code>Δw</code>（或<code>Δb</code>），然后观察输出有什么变化。不断重复这个过程，直至得到对应最精确输出的那组<code>w</code>和<code>b</code>，就是我们要的值。这个过程称为模型的训练。</p>
+<ul>
+<li><h5 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h5></li>
+</ul>
+<p><strong>1.数据预处理</strong></p>
+<p>一般是将数据归一化处理，处理公式为：</p>
+<p>1).$y_{ij}= \frac{x_{ij}-min（x_j)}{max(x_j)-min(x_j)}$, ps：$x_j$代表该数据对应的列(当激活函数为s形函数时适用)</p>
+<p>2).$y_{ij}= \frac{2*(x_{ij}-minx_j)}{max(x_j)-min(x_j)}$,（当激活函数为双极s形函数时适用)</p>
+<p>3).采用matlab预处理数据：一般采用这三个函数：premnmx ， postmnmx ， tramnmx </p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>语法</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>premnmx</td>
+<td>[pn,minp,maxp,tn,mint,maxt] $^{[1]}$=premnmx(p,t)</td>
+<td>将网络的输入和输出数据进行归一化，归一化后的数据将分布在[-1，1]间</td>
+</tr>
+<tr>
+<td>postmnmx</td>
+<td>[p,t]=postmnmx(pn,minp,maxp,tn,mint,maxt)$^{[2]}$</td>
+<td>将数据反归一化得到真实数据</td>
+</tr>
+<tr>
+<td>tramnmx</td>
+<td>[pn]=tramnmx(p,minp,maxp)$^{[3]}$</td>
+<td>用于归一化处理待分类的输入数据</td>
+</tr>
+</tbody>
+</table>
+<p>参数及其含义：</p>
+<p>[1]:</p>
+<p>pn:p矩阵按行归一化后的矩阵</p>
+<p>minp，maxp：p矩阵每一行的最小值，最大值</p>
+<p>tn：t矩阵按行归一化后的矩阵</p>
+<p>mint,maxt:t矩阵每一行的最小值，最大值</p>
+<p>[2]：</p>
+<p>minp，maxp：p矩阵每行的最小值，最大值</p>
+<p>mint，maxt：t矩阵每行的最小值，最大值</p>
+<p>[3]：</p>
+<p>minp,maxp:矩阵的最小，最大值</p>
+<p>pn:归一化后的矩阵</p>
+<p><strong>2.matlab编程实现</strong></p>
+<p>1).首先介绍3个必要的函数： </p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>名称</th>
+<th>语法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>newff</td>
+<td>前馈网络创建函数</td>
+<td>net=newff（A，B,{C},’trainFun’)$^{[1]}$</td>
+</tr>
+<tr>
+<td>train</td>
+<td>网络训练学习函数。</td>
+<td>[net,tr,Y1,E]=train(net,x,y) $^{[2]}$</td>
+</tr>
+<tr>
+<td>sim</td>
+<td>仿真函数</td>
+<td>Y=sim（net，x）$^{[3]}$</td>
+</tr>
+</tbody>
+</table>
+<p>参数及其含义：</p>
+<p>[1] </p>
+<p>A:N*2的矩阵，第i行元素为输入信号xi的最小值和最大值</p>
+<p>B：一个k维行向量，包含网络中各层节点数</p>
+<p>C：一个k维字符串行向量，每一分量为对应层神经元的激活函数</p>
+<p>trainFun：训练算法，</p>
+<p>[2]：</p>
+<p>X：网络实际输入</p>
+<p>Y：网络应有输出</p>
+<p>tr：训练跟踪信息</p>
+<p>Y1：网络实际输出</p>
+<p>E：误差矩阵</p>
+<p>[3]：</p>
+<p>net：网络</p>
+<p>X：输入给网络的K*N矩阵，其中K为网络输入个数，N为数据样本数</p>
+<p>Y：输出矩阵Q*N，其中Q为网络输出个数</p>
+<p>2).网络配置参数</p>
+<p>net.trainparam.goal:目标误差</p>
+<p>net.trainparam.show:中间结果的周期</p>
+<p>net.trainparam.epochs:最大迭代次数</p>
+<p>net.trainparam.lr:学习率</p>
+<p>3).实例</p>
+<p>本文选取了桂林市发生火灾的7个样本的平均气温，日均相对湿度，日均风速，日均降水量，森林燃烧面积来预测样本8的森林燃烧面积。下面上代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">P=[20.5 19.5 24.5 19.1 18.9 22.4 22.3</span><br><span class="line">63 63 69 45 53 69 69</span><br><span class="line">0.9 0.8 3.5 3 0.9 1.2 1.3</span><br><span class="line">0 0 0 0 0 0 0];%输入矩阵</span><br><span class="line">%目标输出矩阵</span><br><span class="line">T=[1700 900 2512.6 1145.9 1032.5 1803.8 1913.9];</span><br><span class="line">[p1,minp,maxp,t1,mint,maxt]=premnmx(P,T);</span><br><span class="line">%minmax(P)得到矩阵P的最小和最大值（找到每行的最小和最大，有多少行就有多少对最小和最大）</span><br><span class="line">net=newff(minmax(p),[7,6,1],&#123;&apos;tansig&apos;,&apos;tansig&apos;,&apos;purelin&apos;&#125;,&apos;trainlm);</span><br><span class="line">net.trainparam.epochs=5000;%设置训练次数</span><br><span class="line">net.trainparam.goal=0.0000001;%设置收敛误差</span><br><span class="line">%训练网络</span><br><span class="line">[net,tr]=train(net,p1,t1);</span><br><span class="line">%输入数据</span><br><span class="line">a=[16.9;34;1.3;0];</span><br><span class="line">%将输入数据归一化</span><br><span class="line">a=premnmx(a);</span><br><span class="line">%放入到网络输出数据,仿真</span><br><span class="line">b=sim(net,a);</span><br><span class="line">%将数据反归一化得到预测数据</span><br><span class="line">c=postmnmx(b,mint,maxt);</span><br><span class="line">%输出目标结果，非必需</span><br><span class="line">fprintf(&apos;%d&apos;,c);</span><br></pre></td></tr></table></figure>
 
       
 
@@ -519,11 +654,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数模</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">语法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
