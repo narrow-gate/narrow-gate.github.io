@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Hello World | YUAN233&#39;S blog</title>
+  <title>灰色预测之GM（1，1）模型 | YUAN233&#39;S blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="欢迎来我的小站呀 希望您能常来坐坐 也希望能给您带来一点帮助 我呀 老早就想做一个属于自己的博客了  虽然在其他地方也有自己的博客 但总觉着不是一个独立的空间  这个空间就像是小时候的日记本呢 都是用来写下自己的一些感悟 无论是生活还是学习  小时候很喜欢日记本满满的感觉 现在也同样喜欢这个空间满满的感觉 突然有种很温暖的感觉 希望在前面的您也有这样的体会呢 当时看着自己的东西被加载出来的喜悦真">
-<meta name="keywords" content="杂谈">
+  <meta name="description" content="由于在数学建模的过程中，常常碰到需要做预测的问题，故本人最近学习了灰色预测模型。所谓灰色，是指对含有不确定因素的系统进行预测的方法。而自然界中的大多数问题都含有不确定因素，故这个算法对解决实际问题很有帮助，下面本人就谈谈自己一点浅薄的理解吧。  简介  灰色预测模型(Gray Forecast Model)是通过少量的、不完全的信息，建立数学模型并做出预测的一种方法。灰色预测模型所需建模信息较少">
+<meta name="keywords" content="数模">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/02/03/helloworld/index.html">
+<meta property="og:title" content="灰色预测之GM（1，1）模型">
+<meta property="og:url" content="http://yoursite.com/2018/02/12/灰色预测之GM（1，1）模型/index.html">
 <meta property="og:site_name" content="YUAN233&#39;S blog">
-<meta property="og:description" content="欢迎来我的小站呀 希望您能常来坐坐 也希望能给您带来一点帮助 我呀 老早就想做一个属于自己的博客了  虽然在其他地方也有自己的博客 但总觉着不是一个独立的空间  这个空间就像是小时候的日记本呢 都是用来写下自己的一些感悟 无论是生活还是学习  小时候很喜欢日记本满满的感觉 现在也同样喜欢这个空间满满的感觉 突然有种很温暖的感觉 希望在前面的您也有这样的体会呢 当时看着自己的东西被加载出来的喜悦真">
+<meta property="og:description" content="由于在数学建模的过程中，常常碰到需要做预测的问题，故本人最近学习了灰色预测模型。所谓灰色，是指对含有不确定因素的系统进行预测的方法。而自然界中的大多数问题都含有不确定因素，故这个算法对解决实际问题很有帮助，下面本人就谈谈自己一点浅薄的理解吧。  简介  灰色预测模型(Gray Forecast Model)是通过少量的、不完全的信息，建立数学模型并做出预测的一种方法。灰色预测模型所需建模信息较少">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-02T17:26:31.110Z">
+<meta property="og:updated_time" content="2018-02-12T07:40:14.316Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="欢迎来我的小站呀 希望您能常来坐坐 也希望能给您带来一点帮助 我呀 老早就想做一个属于自己的博客了  虽然在其他地方也有自己的博客 但总觉着不是一个独立的空间  这个空间就像是小时候的日记本呢 都是用来写下自己的一些感悟 无论是生活还是学习  小时候很喜欢日记本满满的感觉 现在也同样喜欢这个空间满满的感觉 突然有种很温暖的感觉 希望在前面的您也有这样的体会呢 当时看着自己的东西被加载出来的喜悦真">
+<meta name="twitter:title" content="灰色预测之GM（1，1）模型">
+<meta name="twitter:description" content="由于在数学建模的过程中，常常碰到需要做预测的问题，故本人最近学习了灰色预测模型。所谓灰色，是指对含有不确定因素的系统进行预测的方法。而自然界中的大多数问题都含有不确定因素，故这个算法对解决实际问题很有帮助，下面本人就谈谈自己一点浅薄的理解吧。  简介  灰色预测模型(Gray Forecast Model)是通过少量的、不完全的信息，建立数学模型并做出预测的一种方法。灰色预测模型所需建模信息较少">
   
     <link rel="alternative" href="/atom.xml" title="YUAN233&#39;S blog" type="application/atom+xml">
   
@@ -147,34 +147,70 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-helloworld" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-灰色预测之GM（1，1）模型" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      灰色预测之GM（1，1）模型
     </h1>
   
 
         
-        <a href="/2018/02/03/helloworld/" class="archive-article-date">
-  	<time datetime="2018-02-02T16:15:40.773Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-03</time>
+        <a href="/2018/02/12/灰色预测之GM（1，1）模型/" class="archive-article-date">
+  	<time datetime="2018-02-12T07:40:29.374Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-02-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p> 欢迎来我的小站呀 希望您能常来坐坐 也希望能给您带来一点帮助</p>
-<p>我呀 老早就想做一个属于自己的博客了 </p>
-<p>虽然在其他地方也有自己的博客 但总觉着不是一个独立的空间 </p>
-<p>这个空间就像是小时候的日记本呢 都是用来写下自己的一些感悟 无论是生活还是学习 </p>
-<p>小时候很喜欢日记本满满的感觉 现在也同样喜欢这个空间满满的感觉 突然有种很温暖的感觉 希望在前面的您也有这样的体会呢</p>
-<p>当时看着自己的东西被加载出来的喜悦真是难以描述呢 </p>
-<p>这个博客一点点的变化 我体会到了一个做匠人的心情 它从贫瘠的土地变成了现在的样子（当然我做的并不多啦）真是十分欣慰 这里感谢yilia的主题呢 很喜欢哦 兜兜转转很多次 又重新找回来真是十分感动啊 （就当作深夜的意识流吧</p>
-<p>希望以后能在这片土地上耕耘出更多的东西呢 也希望进来的你能够有所收获呀 enjoy your life </p>
+        <p> 由于在数学建模的过程中，常常碰到需要做预测的问题，故本人最近学习了灰色预测模型。所谓灰色，是指对含有不确定因素的系统进行预测的方法。而自然界中的大多数问题都含有不确定因素，故这个算法对解决实际问题很有帮助，下面本人就谈谈自己一点浅薄的理解吧。</p>
+<ul>
+<li><h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5></li>
+</ul>
+<p>灰色预测模型(Gray Forecast Model)是通过少量的、不完全的信息，建立数学模型并做出预测的一种方法。灰色预测模型所需建模信息较少，运算方便，建模精度高。在灰色预测中，应用得最多的灰色预测模型是GM(1,1)模型，GM(1,1)模型是灰色系统理论中一种灰色动态预测模型。该模型将时间序列转化为微分方程，建立抽象系统的发展变化动态模型。</p>
+<ul>
+<li><h5 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h5><a id="more"></a>
+</li>
+</ul>
+<ol>
+<li><p>数据的检验与处理</p>
+<p>为了保证GM（1，1）建模方法的可行性，需要对已知数据做必要的检验处理。</p>
+</li>
+</ol>
+<p>  设原始数据列为$x^{(0)}=(x^0(1),x^0(2),….x^0(n))$，计算数列的级比:</p>
+<p>​     $ \lambda(k)=\frac{x^{(0)}(k-1)}{x^{(0)}(k)}\quad,k=2,3,…,n$</p>
+<p>如果所有的级比都落在可容覆盖区间$X=(e^{\frac{-2}{n+1}},e^{\frac{2}{n+1}})$内，则数列$x^{(0)}$可以建立GM（1，1）模型且可以进行灰色预测。否则，对数据做适当的变换处理，如平移变换：</p>
+<p>$y^{(0)}(k)=x^{(0)}(k)+c\quad,k=1,2,…,n$(取c使得数据列的级比都落在可容覆盖内)</p>
+<ol>
+<li>对历史时间序列数据进行一阶累加处理，得到生成数列$X^{（1）}$：$X^{（1）}=（X^{（1）}(1),X^{（1）}(2),…X^{（1）}(n))=(\sum\limits^{1}_{m=1}{x}^{（0）}(m),…,\sum\limits^{n}_{m=1}{x}^{（0）}(m))$</li>
+</ol>
+<p>生产相应的均值序列：</p>
+<p>$z^{（1）}=（z^{（1）}(2),X^{（1）}(3),…X^{（1）}(n))$,</p>
+<p>式中$z^{（k）}=（0.5*X^{（1）}(k)+0.5X^{（1）}(k-1)),k=1,…n$</p>
+<p>3.建立灰微分方程模型GM(1,1)</p>
+<p>$x^{(0)}(k)+\alpha z^{(1)}(k)=b$</p>
+<p>相应的白化微分方程模型为：$\frac{dx^{(1)}(t)}{dt}+ax^{(1)}(t)=b$</p>
+<p>4.利用等式求得a，b的值$\left[\begin{matrix}a\\b\end{matrix}\right] =(B^TB^{-1})B^TY_1$</p>
+<p>其中：$B=\left[\begin{matrix}-\frac{1}{2}<em>(X^{(1)}(1)+X^{(1)}(2))&amp;1\-\frac{1}{2}</em>(X^{(1)}(2)+X^{(1)}(3))&amp;1\\M&amp;M\-\frac{1}{2}*(X^{(1)}(n-1)+X^{(1)}(n))&amp;1\end{matrix}\right],Y=\left[\begin{matrix}X^{(0)}(2)\\X^{(0)}(3)\\M\\X^{(0)}(n)\end{matrix}\right]$</p>
+<p>解为：$\hat{x}^{(1)}(k+1)=(x^{(0)}(1)-\frac{b}{a})e^{-ak}+\frac{b}{a}\quad ,k=1,2,…,n-1$</p>
+<p>于是得到预测值：$\hat{x}^{(1)}(k+1)=(x^{(0)}(1)-\frac{b}{a})e^{-ak}+\frac{b}{a}\quad ,k=1,2,…,n-1$</p>
+<p>从而相应地得到预测值：</p>
+<p>$\hat{x}^{(0)}(k+1)=\hat{x}^{(1)}(k+1)-\hat{x}^{(1)}(k)\quad,k=1,2,…,n-1$</p>
+<p>5.检验预测值</p>
+<p>（1）残差检验：计算相对残差</p>
+<p>$\varepsilon(k)=\frac{x^{(0)}(k)-\hat{x}^{(0)}(k)}{x^{(0)}(k)}\quad,k=1,2,…,n$</p>
+<p>这里$\hat{x}^{(0)}(k)={x}^{(0)}(k),$如果对所有的$|\varepsilon(k)|&lt;0.1$,则认为达到较高的要求；否则，若对所有的$|\varepsilon(k)|&lt;0.2$,则认为达到一般要求。</p>
+<p>（2）级比偏差值检验：首先由步骤1中的级比公式求出$\lambda(k)=\frac{x^{(0)}(k-1)}{x^{(0)}(k)}$</p>
+<p>而后再由发展系数a，求出相应的级比偏差$\rho(k)=1-\frac{1-0.5a}{1+0.5a}\lambda(k)$</p>
+<p>如果对所有的$|\rho(k)|&lt;0.1$则认为达到较高的要求，否则，若对于所有的$|\rho(k)|&lt;0.2$,则认为达到一般要求</p>
+<ul>
+<li><h5 id="灰色预测的实例"><a href="#灰色预测的实例" class="headerlink" title="灰色预测的实例"></a>灰色预测的实例</h5></li>
+</ul>
+<p>首先</p>
 
       
 
@@ -219,7 +255,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">杂谈</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数模</a>
         		</li>
       		
 		</ul>
@@ -231,7 +267,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        			<a href="/categories/学习//" class="article-tag-list-link color3">学习</a>
         		</li>
       		
 		</ul>
@@ -286,7 +322,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/03/helloworld/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/02/12/灰色预测之GM（1，1）模型/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -300,15 +336,11 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/02/03/浅谈神经网络/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          浅谈神经网络
-        
-      </div>
-    </a>
   
+    <a href="/2018/02/06/元胞自动机/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">元胞自动机</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
 </nav>
 
@@ -334,7 +366,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="helloworld" data-title="Hello World" data-url="http://yoursite.com/2018/02/03/helloworld/"></div>
+	<div class="ds-thread" data-thread-key="灰色预测之GM（1，1）模型" data-title="灰色预测之GM（1，1）模型" data-url="http://yoursite.com/2018/02/12/灰色预测之GM（1，1）模型/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -357,8 +389,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "http://yoursite.com/2018/02/03/helloworld/", 
-    sourceId: "helloworld",
+    url: "http://yoursite.com/2018/02/12/灰色预测之GM（1，1）模型/", 
+    sourceId: "灰色预测之GM（1，1）模型",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
@@ -367,7 +399,7 @@
   
 
   
-  <div id="SOHUCS" sid="helloworld" ></div> 
+  <div id="SOHUCS" sid="灰色预测之GM（1，1）模型" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
