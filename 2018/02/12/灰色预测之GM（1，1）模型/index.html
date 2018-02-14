@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="YUAN233&#39;S blog">
 <meta property="og:description" content="由于在数学建模的过程中，常常碰到需要做预测的问题，故本人最近学习了灰色预测模型。所谓灰色，是指对含有不确定因素的系统进行预测的方法。而自然界中的大多数问题都含有不确定因素，故这个算法对解决实际问题很有帮助，下面本人就谈谈自己一点浅薄的理解吧。  简介  灰色预测模型(Gray Forecast Model)是通过少量的、不完全的信息，建立数学模型并做出预测的一种方法。灰色预测模型所需建模信息较少">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-12T08:51:45.670Z">
+<meta property="og:updated_time" content="2018-02-14T15:37:53.158Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="灰色预测之GM（1，1）模型">
 <meta name="twitter:description" content="由于在数学建模的过程中，常常碰到需要做预测的问题，故本人最近学习了灰色预测模型。所谓灰色，是指对含有不确定因素的系统进行预测的方法。而自然界中的大多数问题都含有不确定因素，故这个算法对解决实际问题很有帮助，下面本人就谈谈自己一点浅薄的理解吧。  简介  灰色预测模型(Gray Forecast Model)是通过少量的、不完全的信息，建立数学模型并做出预测的一种方法。灰色预测模型所需建模信息较少">
@@ -237,20 +237,55 @@
 <td>386769.6754</td>
 <td>403262.1076</td>
 </tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>2000</th>
+<th>2001</th>
+<th>2002</th>
+<th>2003</th>
+<th>2004</th>
+<th>2005</th>
+<th>2006</th>
+<th>2007</th>
+<th>2008</th>
+<th>2009</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td>预测值</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>387760</td>
+<td>390850</td>
+<td>393960</td>
+<td>397100</td>
+<td>400260</td>
+<td>403450</td>
+<td>406660</td>
+<td>409900</td>
+<td>413170</td>
+<td>416460</td>
+</tr>
+<tr>
+<td>原始值</td>
+<td>432810</td>
+<td>424023</td>
+<td>406478</td>
+<td>406536</td>
+<td>425413</td>
+<td>428444</td>
+<td>4319845691</td>
+<td>438524.2236</td>
+<td>458726</td>
+<td>413259</td>
 </tr>
 </tbody>
 </table>
+<p>下面上matlab代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">clc,clear;  </span><br><span class="line">syms a b;  %定义a，b两个变量</span><br><span class="line">c=[a b]&apos;;  </span><br><span class="line">A=[343414.509	347261.3399	369742.9504	389838.7377	402390.1462	342889.3714	342839.3757	369871.869	386769.6754	403262.1076];</span><br><span class="line">B=cumsum(A);  %原始数据累加  </span><br><span class="line">n=length(A);  </span><br><span class="line">for i=1:(n-1)  </span><br><span class="line">    C(i)=(B(i)+B(i+1))/2; %生成累加矩阵  </span><br><span class="line">end  </span><br><span class="line">%计算待定参数的值  </span><br><span class="line">D=A;D(1)=[];  </span><br><span class="line">D=D&apos;;  </span><br><span class="line">E=[-C;ones(1,n-1)]; % ones生成一个1行n-1列的矩阵，并把-c和ones贴到一起付给e</span><br><span class="line">c=inv(E*E&apos;)*E*D;  %inv：矩阵求逆</span><br><span class="line">c=c&apos;;  </span><br><span class="line">a=c(1);b=c(2);  </span><br><span class="line">%预测后续数据  </span><br><span class="line">F=[];F(1)=A(1);  </span><br><span class="line">for i=2:(n+10)  %只推测后10个数据，可以从此修改  </span><br><span class="line">    F(i)=(A(1)-b/a)/exp(a*(i-1))+b/a;  </span><br><span class="line">end  </span><br><span class="line">G=[];G(1)=A(1);  </span><br><span class="line">for i=2:(n+10)  %只推测后10个数据，可以从此修改  </span><br><span class="line">    G(i)=F(i)-F(i-1);  %得到预测出来的数据  </span><br><span class="line">end  </span><br><span class="line">t1=1990:1999;  </span><br><span class="line">t2=1990:2009;  %多10组数据  </span><br><span class="line">G  </span><br><span class="line">h=plot(t1,A,&apos;o&apos;,t2,G,&apos;-&apos;); %原始数据与预测数据的比较  </span><br><span class="line">set(h,&apos;LineWidth&apos;,1.5);</span><br></pre></td></tr></table></figure>
 
       
 
@@ -578,7 +613,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">数模</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,15 +621,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数模</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">语法</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">书评</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">语法</a>
               </li>
             
             <div class="clearfix"></div>
