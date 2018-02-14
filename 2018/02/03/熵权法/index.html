@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="YUAN233&#39;S blog">
 <meta property="og:description" content="简介  在信息论中，熵是对不确定性的一种度量。信息量越大，不确定性就越小，熵也就越小；信息量越小，不确定性越大，熵也越大。 熵权法是一种客观附权法，因为它仅仅依赖于数据本身的离散型(离散型数据类似于整数，比如人数等）。本文主要讲述用熵值来判断某个指标的离散程度，指标的离散程度越大，该指标对综合评价的影响（权重）越大。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-02T13:23:15.928Z">
+<meta property="og:updated_time" content="2018-02-12T08:18:21.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="熵权法">
 <meta name="twitter:description" content="简介  在信息论中，熵是对不确定性的一种度量。信息量越大，不确定性就越小，熵也就越小；信息量越小，不确定性越大，熵也越大。 熵权法是一种客观附权法，因为它仅仅依赖于数据本身的离散型(离散型数据类似于整数，比如人数等）。本文主要讲述用熵值来判断某个指标的离散程度，指标的离散程度越大，该指标对综合评价的影响（权重）越大。">
@@ -167,8 +167,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><br></p>
-<ul>
+        <ul>
 <li><h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5></li>
 </ul>
 <p>在信息论中，熵是对不确定性的一种度量。信息量越大，不确定性就越小，熵也就越小；信息量越小，不确定性越大，熵也越大。</p>
@@ -177,31 +176,20 @@
 <ul>
 <li><h5 id="使用步骤"><a href="#使用步骤" class="headerlink" title="使用步骤"></a>使用步骤</h5></li>
 </ul>
-<ol>
-<li><p>对$n个$样本，$m$个指标,则$x_{ij}$为第$i$个样本的第$j$个指标的数值</p>
+<p>1.对$n个$样本，$m$个指标,则$x_{ij}$为第$i$个样本的第$j$个指标的数值</p>
 <p>($i=1,…n;j=1,…,m$);</p>
-</li>
-<li><p>将评价矩阵归一化处理后得到$y_{ij}$ ,其计算公式如下:$y_{ij}= \frac{x_{ij}-min（x_j)}{max(x_j)-min(x_j)}$,  ps：$x_j$代表该数据对应的列</p>
-</li>
-</ol>
-<ol>
-<li><p>求各指标的信息熵</p>
+<p>2.将评价矩阵归一化处理后得到$y_{ij}$ ,其计算公式如下:$y_{ij}= \frac{x_{ij}-min（x_j)}{max(x_j)-min(x_j)}$,  ps：$x_j$代表该数据对应的列</p>
+<p>3.求各指标的信息熵</p>
 <p>据信息论中信息熵的定义，一组数据的信息熵为$E_j=-\frac{1}{ln n}\sum\limits_{i=1}^n(a_{ij} *ln(a_{ij}))$</p>
 <p>ps：定义$a_{ij}=0$,   相应的$ln(a_{ij})=0$  </p>
-</li>
-<li><p>确定各指标权重</p>
-</li>
-</ol>
+<p>4.确定各指标权重</p>
 <p>据信息熵的计算公式，计算出各个指标的信息熵$E_1,E_2,..,E_k$,通过信息熵计算各指标的权重：$W_i=\frac{1-E_i}{k-\sum(E_i)}$,$(i=1,2,..,k)$.</p>
 <ul>
 <li><h5 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h5><p>以美国的森林大火为例，样本为{加州森林，黄石森林，大烟山森林，亚利桑那森林}，评价指标为{森林可燃物，气候条件，火源，地形因素，林区管理}。</p>
 </li>
 </ul>
-<ol>
-<li><p>数据标准化</p>
+<p>1.数据标准化</p>
 <p>表1 四个森林五个评价指标得分表</p>
-</li>
-</ol>
 <table>
 <thead>
 <tr>
@@ -319,11 +307,8 @@
 </tr>
 </tbody>
 </table>
-<ol>
-<li><p>计算各指标的权重</p>
+<p>3.计算各指标的权重</p>
 <p>根据指标权重计算公式$W_i=\frac{1-E_i}{n-\sum(E_i)}(i=1,2…5)$,得到各个指标的权重表如下：</p>
-</li>
-</ol>
 <table>
 <thead>
 <tr>
@@ -346,11 +331,8 @@
 </tr>
 </tbody>
 </table>
-<ol>
-<li><p>计算各样本的得分</p>
+<p>4.计算各样本的得分</p>
 <p>根据计算出的指标权重，以及得分表。设$z_l$为第$l$个样本的最终得分，则$Z_l=\sum\limits_{n=1}^5x_{ij}*w_i $,最后各森林的得分情况如下</p>
-</li>
-</ol>
 <table>
 <thead>
 <tr>
@@ -708,19 +690,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">语法</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数模</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">语法</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="YUAN233&#39;S blog">
 <meta property="og:description" content="由于在数学建模的过程中，常常碰到需要做预测的问题，故本人最近学习了灰色预测模型。所谓灰色，是指对含有不确定因素的系统进行预测的方法。而自然界中的大多数问题都含有不确定因素，故这个算法对解决实际问题很有帮助，下面本人就谈谈自己一点浅薄的理解吧。  简介  灰色预测模型(Gray Forecast Model)是通过少量的、不完全的信息，建立数学模型并做出预测的一种方法。灰色预测模型所需建模信息较少">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-12T07:40:14.316Z">
+<meta property="og:updated_time" content="2018-02-12T08:51:45.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="灰色预测之GM（1，1）模型">
 <meta name="twitter:description" content="由于在数学建模的过程中，常常碰到需要做预测的问题，故本人最近学习了灰色预测模型。所谓灰色，是指对含有不确定因素的系统进行预测的方法。而自然界中的大多数问题都含有不确定因素，故这个算法对解决实际问题很有帮助，下面本人就谈谈自己一点浅薄的理解吧。  简介  灰色预测模型(Gray Forecast Model)是通过少量的、不完全的信息，建立数学模型并做出预测的一种方法。灰色预测模型所需建模信息较少">
@@ -176,18 +176,13 @@
 <li><h5 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h5><a id="more"></a>
 </li>
 </ul>
-<ol>
-<li><p>数据的检验与处理</p>
+<p>1.数据的检验与处理</p>
 <p>为了保证GM（1，1）建模方法的可行性，需要对已知数据做必要的检验处理。</p>
-</li>
-</ol>
 <p>  设原始数据列为$x^{(0)}=(x^0(1),x^0(2),….x^0(n))$，计算数列的级比:</p>
 <p>​     $ \lambda(k)=\frac{x^{(0)}(k-1)}{x^{(0)}(k)}\quad,k=2,3,…,n$</p>
 <p>如果所有的级比都落在可容覆盖区间$X=(e^{\frac{-2}{n+1}},e^{\frac{2}{n+1}})$内，则数列$x^{(0)}$可以建立GM（1，1）模型且可以进行灰色预测。否则，对数据做适当的变换处理，如平移变换：</p>
 <p>$y^{(0)}(k)=x^{(0)}(k)+c\quad,k=1,2,…,n$(取c使得数据列的级比都落在可容覆盖内)</p>
-<ol>
-<li>对历史时间序列数据进行一阶累加处理，得到生成数列$X^{（1）}$：$X^{（1）}=（X^{（1）}(1),X^{（1）}(2),…X^{（1）}(n))=(\sum\limits^{1}_{m=1}{x}^{（0）}(m),…,\sum\limits^{n}_{m=1}{x}^{（0）}(m))$</li>
-</ol>
+<p>2.对历史时间序列数据进行一阶累加处理，得到生成数列$X^{（1）}$：$X^{（1）}=（X^{（1）}(1),X^{（1）}(2),…X^{（1）}(n))=(\sum\limits^{1}_{m=1}{x}^{（0）}(m),…,\sum\limits^{n}_{m=1}{x}^{（0）}(m))$</p>
 <p>生产相应的均值序列：</p>
 <p>$z^{（1）}=（z^{（1）}(2),X^{（1）}(3),…X^{（1）}(n))$,</p>
 <p>式中$z^{（k）}=（0.5*X^{（1）}(k)+0.5X^{（1）}(k-1)),k=1,…n$</p>
@@ -195,7 +190,8 @@
 <p>$x^{(0)}(k)+\alpha z^{(1)}(k)=b$</p>
 <p>相应的白化微分方程模型为：$\frac{dx^{(1)}(t)}{dt}+ax^{(1)}(t)=b$</p>
 <p>4.利用等式求得a，b的值$\left[\begin{matrix}a\\b\end{matrix}\right] =(B^TB^{-1})B^TY_1$</p>
-<p>其中：$B=\left[\begin{matrix}-\frac{1}{2}<em>(X^{(1)}(1)+X^{(1)}(2))&amp;1\-\frac{1}{2}</em>(X^{(1)}(2)+X^{(1)}(3))&amp;1\\M&amp;M\-\frac{1}{2}*(X^{(1)}(n-1)+X^{(1)}(n))&amp;1\end{matrix}\right],Y=\left[\begin{matrix}X^{(0)}(2)\\X^{(0)}(3)\\M\\X^{(0)}(n)\end{matrix}\right]$</p>
+<p>其中：<br>$$<br>B=\left[\begin{matrix}-\frac{1}{2}<em>(X^{(1)}(1)+X^{(1)}(2))&amp;1\-\frac{1}{2}</em>(X^{(1)}(2)+X^{(1)}(3))&amp;1\\M&amp;M\-\frac{1}{2}*(X^{(1)}(n-1)+X^{(1)}(n))&amp;1\end{matrix}\right]<br>$$</p>
+<p>$$<br>Y=\left[\begin{matrix}X^{(0)}(2)\\X^{(0)}(3)\\M\\X^{(0)}(n)\end{matrix}\right]<br>$$</p>
 <p>解为：$\hat{x}^{(1)}(k+1)=(x^{(0)}(1)-\frac{b}{a})e^{-ak}+\frac{b}{a}\quad ,k=1,2,…,n-1$</p>
 <p>于是得到预测值：$\hat{x}^{(1)}(k+1)=(x^{(0)}(1)-\frac{b}{a})e^{-ak}+\frac{b}{a}\quad ,k=1,2,…,n-1$</p>
 <p>从而相应地得到预测值：</p>
@@ -210,7 +206,51 @@
 <ul>
 <li><h5 id="灰色预测的实例"><a href="#灰色预测的实例" class="headerlink" title="灰色预测的实例"></a>灰色预测的实例</h5></li>
 </ul>
-<p>首先</p>
+<p>1.首先准备数据，由于本人最近参加了数学建模美赛，故使用美赛中的数据作为本例的数据。以az的天然气能源作为原始数据序列：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>1990</th>
+<th>1991</th>
+<th>1992</th>
+<th>1993</th>
+<th>1994</th>
+<th>1995</th>
+<th>1996</th>
+<th>1997</th>
+<th>1998</th>
+<th>1999</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>原始值</td>
+<td>343414.509</td>
+<td>347261.3399</td>
+<td>369742.9504</td>
+<td>389838.7377</td>
+<td>402390.1462</td>
+<td>342889.3714</td>
+<td>342839.3757</td>
+<td>369871.869</td>
+<td>386769.6754</td>
+<td>403262.1076</td>
+</tr>
+<tr>
+<td>预测值</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 
       
 
@@ -538,19 +578,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">语法</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数模</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">语法</a>
               </li>
              
               <li class="article-tag-list-item">
