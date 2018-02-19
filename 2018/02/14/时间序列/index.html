@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>时间序列 | YUAN233&#39;S blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数学建模美赛于昨天刚结束，这次比赛和队友之间配合特别默契，虽然不确定他们能不能看到，但是还是想对他们表达一下感谢，大家在一起学习的时候感觉特别好，希望有机会可以继续一起学习呀。 通过这次比赛还了解到了很多的东西，需要填的坑也蛮多，鉴于昨天有点辛苦，故今天想继续填坑之旅，首先要解决的是时间序列这个问题。好了闲话不多说了，下面谈一下我的理解。  简介">
+  <meta name="description" content="数学建模美赛于昨天刚结束，这次比赛和队友之间配合特别默契，虽然不确定他们能不能看到，但是还是想对他们表达一下感谢，大家在一起学习的时候感觉特别好，希望有机会可以继续一起学习呀。 通过这次比赛还了解到了很多的东西，需要填的坑也蛮多，鉴于昨天有点辛苦，故今天想继续填坑之旅，首先要解决的是时间序列这个问题。好了闲话不多说了，下面谈一下我的理解。  简介  时间序列是指将某种现象某一个统计指标在不同">
 <meta name="keywords" content="数模,matlab">
 <meta property="og:type" content="article">
 <meta property="og:title" content="时间序列">
 <meta property="og:url" content="http://yoursite.com/2018/02/14/时间序列/index.html">
 <meta property="og:site_name" content="YUAN233&#39;S blog">
-<meta property="og:description" content="数学建模美赛于昨天刚结束，这次比赛和队友之间配合特别默契，虽然不确定他们能不能看到，但是还是想对他们表达一下感谢，大家在一起学习的时候感觉特别好，希望有机会可以继续一起学习呀。 通过这次比赛还了解到了很多的东西，需要填的坑也蛮多，鉴于昨天有点辛苦，故今天想继续填坑之旅，首先要解决的是时间序列这个问题。好了闲话不多说了，下面谈一下我的理解。  简介">
+<meta property="og:description" content="数学建模美赛于昨天刚结束，这次比赛和队友之间配合特别默契，虽然不确定他们能不能看到，但是还是想对他们表达一下感谢，大家在一起学习的时候感觉特别好，希望有机会可以继续一起学习呀。 通过这次比赛还了解到了很多的东西，需要填的坑也蛮多，鉴于昨天有点辛苦，故今天想继续填坑之旅，首先要解决的是时间序列这个问题。好了闲话不多说了，下面谈一下我的理解。  简介  时间序列是指将某种现象某一个统计指标在不同">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-14T15:50:21.689Z">
+<meta property="og:updated_time" content="2018-02-19T14:32:51.388Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="时间序列">
-<meta name="twitter:description" content="数学建模美赛于昨天刚结束，这次比赛和队友之间配合特别默契，虽然不确定他们能不能看到，但是还是想对他们表达一下感谢，大家在一起学习的时候感觉特别好，希望有机会可以继续一起学习呀。 通过这次比赛还了解到了很多的东西，需要填的坑也蛮多，鉴于昨天有点辛苦，故今天想继续填坑之旅，首先要解决的是时间序列这个问题。好了闲话不多说了，下面谈一下我的理解。  简介">
+<meta name="twitter:description" content="数学建模美赛于昨天刚结束，这次比赛和队友之间配合特别默契，虽然不确定他们能不能看到，但是还是想对他们表达一下感谢，大家在一起学习的时候感觉特别好，希望有机会可以继续一起学习呀。 通过这次比赛还了解到了很多的东西，需要填的坑也蛮多，鉴于昨天有点辛苦，故今天想继续填坑之旅，首先要解决的是时间序列这个问题。好了闲话不多说了，下面谈一下我的理解。  简介  时间序列是指将某种现象某一个统计指标在不同">
   
     <link rel="alternative" href="/atom.xml" title="YUAN233&#39;S blog" type="application/atom+xml">
   
@@ -172,6 +172,40 @@
 <ul>
 <li><h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5></li>
 </ul>
+<p>时间序列是指将某种现象某<strong>一个</strong>统计指标在不同时间上的各个数值，按时间的先后顺序排列而成的序列。（这个序列多为离散序列）</p>
+<p><strong>构成成分：</strong></p>
+<table>
+<thead>
+<tr>
+<th>内容</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>趋势T</td>
+<td>通常是长期因素影响的结果，如人口总量的变化，方法的变化等。</td>
+</tr>
+<tr>
+<td>循环C</td>
+<td>任何时间间隔超过一年的，环绕趋势线的上，下波动，都可归结为时间序列的循环成分。</td>
+</tr>
+<tr>
+<td>季节S</td>
+<td>许多时间序列往往显示出在一年内有规则的运动，这通常由季节因素引起的，因此成为季节成分。</td>
+</tr>
+<tr>
+<td>不规则I</td>
+<td>是随机，无法预测的。不规则成分是剩余因素，他说明分离了趋势，循环，季节成分后时间序列的偏差。</td>
+</tr>
+</tbody>
+</table>
+<p>本人一点浅薄的理解是关于时间序列在预测方面的作用，而常用的三种预测方法为：移动平均法，加权移动平均法，指数平滑法，下面本文着重介绍移动平均法，指数平滑法。</p>
+<ul>
+<li><p>移动平均法</p>
+<p>​</p>
+</li>
+</ul>
 
       
 
@@ -300,6 +334,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2018/02/19/支持向量机/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          支持向量机
+        
+      </div>
+    </a>
   
   
     <a href="/2018/02/12/灰色预测之GM（1，1）模型/" id="article-nav-older" class="article-nav-link-wrap">
@@ -503,7 +546,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+                <a href="javascript:void(0)" class="js-tag color3">数模</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">matlab</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,15 +562,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数模</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">matlab</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">书评</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
             
             <div class="clearfix"></div>
