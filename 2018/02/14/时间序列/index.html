@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="YUAN233&#39;S blog">
 <meta property="og:description" content="数学建模美赛于昨天刚结束，这次比赛和队友之间配合特别默契，虽然不确定他们能不能看到，但是还是想对他们表达一下感谢，大家在一起学习的时候感觉特别好，希望有机会可以继续一起学习呀。 通过这次比赛还了解到了很多的东西，需要填的坑也蛮多，鉴于昨天有点辛苦，故今天想继续填坑之旅，首先要解决的是时间序列这个问题。好了闲话不多说了，下面谈一下我的理解。  简介  时间序列是指将某种现象某一个统计指标在不同">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-19T14:32:51.388Z">
+<meta property="og:updated_time" content="2018-02-21T15:06:51.703Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="时间序列">
 <meta name="twitter:description" content="数学建模美赛于昨天刚结束，这次比赛和队友之间配合特别默契，虽然不确定他们能不能看到，但是还是想对他们表达一下感谢，大家在一起学习的时候感觉特别好，希望有机会可以继续一起学习呀。 通过这次比赛还了解到了很多的东西，需要填的坑也蛮多，鉴于昨天有点辛苦，故今天想继续填坑之旅，首先要解决的是时间序列这个问题。好了闲话不多说了，下面谈一下我的理解。  简介  时间序列是指将某种现象某一个统计指标在不同">
@@ -173,6 +173,7 @@
 <li><h5 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h5></li>
 </ul>
 <p>时间序列是指将某种现象某<strong>一个</strong>统计指标在不同时间上的各个数值，按时间的先后顺序排列而成的序列。（这个序列多为离散序列）</p>
+<a id="more"></a>
 <p><strong>构成成分：</strong></p>
 <table>
 <thead>
@@ -200,12 +201,38 @@
 </tr>
 </tbody>
 </table>
-<p>本人一点浅薄的理解是关于时间序列在预测方面的作用，而常用的三种预测方法为：移动平均法，加权移动平均法，指数平滑法，下面本文着重介绍移动平均法，指数平滑法。</p>
 <ul>
-<li><p>移动平均法</p>
-<p>​</p>
+<li><h5 id="时间序列的稳定性"><a href="#时间序列的稳定性" class="headerlink" title="时间序列的稳定性"></a>时间序列的稳定性</h5></li>
+</ul>
+<p>时间序列的稳定性十分重要，大部分时间序列模型是假设其在稳定的前提下建立的。直观的讲，时间序列随着时间产生特定的行为，有很高的可能性认为他在未来的行为是一样的。</p>
+<p><strong>稳定性测试</strong></p>
+<p>如果一个时间序列的统计特征如平均数，方差随着时间保持不变，则认为他是稳定的。稳定性的确定标准十分严格，但时间序列随着时间产生恒定的统计特征，根据情况可以假设序列式是稳定的，例如：</p>
+<ul>
+<li>恒定的平均数</li>
+<li>恒定的方差</li>
+<li>不随时间变化的自协方差</li>
+</ul>
+<p>了解到这里，我觉得我应该去补概率论的知识了，关于稳定性测试的深入了解，各位可以自行查询，我就不在这里乱理解了。</p>
+<p><strong>宽平稳</strong></p>
+<p>如果序列的一，二阶矩存在，且对任意时刻t满足：</p>
+<p>1)均值为常数</p>
+<p>2）协方差为时间间隔$\tau$的函数（定义：$\tau=\pi$)</p>
+<p>则称该序列为款平稳时间序列，假设以后研究的时间序列均为宽平稳时间序列。</p>
+<ul>
+<li><h5 id="时间序列预测"><a href="#时间序列预测" class="headerlink" title="时间序列预测"></a>时间序列预测</h5></li>
+</ul>
+<p>本人一点浅薄的理解是关于时间序列在预测方面的作用，而常用的三种预测方法为：移动平均法，指数平滑法，下面本文着重介绍移动平均法，指数平滑法。</p>
+<ul>
+<li><p><strong>移动平均法</strong></p>
+<p>根据时间序列逐渐退移，依次计算包含一定项数的时序平均数，以反映长期趋势的方法。当时间序列的数值由于受周期变动和不规则变动的影响，起伏较大，不易显示出发展趋势时，可用移动平均法，消除这些因素的影响。</p>
+<p><strong>简单平均移动法</strong></p>
 </li>
 </ul>
+<p>设观测序列为$y_1,L,y_t$,取移动平均的项数N&lt;t.一次简单移动平均值计算公式为：</p>
+<p>$M_t^{(1)}=\frac{1}{N}(y_t+y_{t-1}+L+y_{t-N+1})$</p>
+<p>$=\frac{1}{N}(y_{t-1}+L+y_{t-N})+\frac{1}{N}(y_{t}-y_{t-N})$</p>
+<p>$=M_{t-1}^{(1)}+\frac{1}{N}(y_{t}-y_{t-N})$</p>
+<p>当预测目标的基本趋势是在某一水平上下波动时，可用一次简单移动平均法建立预测模型：</p>
 
       
 
@@ -546,15 +573,19 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数模</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">matlab</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color2">matlab</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -563,10 +594,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">书评</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
             
             <div class="clearfix"></div>
