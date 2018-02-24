@@ -16,10 +16,12 @@
 <meta property="og:site_name" content="YUAN233&#39;S blog">
 <meta property="og:description" content="由于在数学建模的过程中，常常碰到需要做预测的问题，故本人最近学习了灰色预测模型。所谓灰色，是指对含有不确定因素的系统进行预测的方法。而自然界中的大多数问题都含有不确定因素，故这个算法对解决实际问题很有帮助，下面本人就谈谈自己一点浅薄的理解吧。  简介  灰色预测模型(Gray Forecast Model)是通过少量的、不完全的信息，建立数学模型并做出预测的一种方法。灰色预测模型所需建模信息较少">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-21T14:57:46.007Z">
+<meta property="og:image" content="http://yoursite.com/images/3.png">
+<meta property="og:updated_time" content="2018-02-21T15:40:52.742Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="灰色预测之GM（1，1）模型">
 <meta name="twitter:description" content="由于在数学建模的过程中，常常碰到需要做预测的问题，故本人最近学习了灰色预测模型。所谓灰色，是指对含有不确定因素的系统进行预测的方法。而自然界中的大多数问题都含有不确定因素，故这个算法对解决实际问题很有帮助，下面本人就谈谈自己一点浅薄的理解吧。  简介  灰色预测模型(Gray Forecast Model)是通过少量的、不完全的信息，建立数学模型并做出预测的一种方法。灰色预测模型所需建模信息较少">
+<meta name="twitter:image" content="http://yoursite.com/images/3.png">
   
     <link rel="alternative" href="/atom.xml" title="YUAN233&#39;S blog" type="application/atom+xml">
   
@@ -190,8 +192,8 @@
 <p>$x^{(0)}(k)+\alpha z^{(1)}(k)=b$</p>
 <p>相应的白化微分方程模型为：$\frac{dx^{(1)}(t)}{dt}+ax^{(1)}(t)=b$</p>
 <p>4.利用等式求得a，b的值$\left[\begin{matrix}a\\b\end{matrix}\right] =(B^TB^{-1})B^TY_1$</p>
-<p>其中：<br>$$<br>B=\left[\begin{matrix}-\frac{1}{2}<em>(X^{(1)}(1)+X^{(1)}(2))&amp;1\-\frac{1}{2}</em>(X^{(1)}(2)+X^{(1)}(3))&amp;1\\M&amp;M\-\frac{1}{2}*(X^{(1)}(n-1)+X^{(1)}(n))&amp;1\end{matrix}\right]<br>$$</p>
-<p>$$<br>Y=\left[\begin{matrix}X^{(0)}(2)\\X^{(0)}(3)\\M\\X^{(0)}(n)\end{matrix}\right]<br>$$</p>
+<p>其中：</p>
+<p><img src="\images\3.png"><br>$$<br>Y=\left[\begin{matrix}X^{(0)}(2)\\X^{(0)}(3)\\M\\X^{(0)}(n)\end{matrix}\right]<br>$$</p>
 <p>解为：$\hat{x}^{(1)}(k+1)=(x^{(0)}(1)-\frac{b}{a})e^{-ak}+\frac{b}{a}\quad ,k=1,2,…,n-1$</p>
 <p>于是得到预测值：$\hat{x}^{(1)}(k+1)=(x^{(0)}(1)-\frac{b}{a})e^{-ak}+\frac{b}{a}\quad ,k=1,2,…,n-1$</p>
 <p>从而相应地得到预测值：</p>
@@ -206,7 +208,7 @@
 <ul>
 <li><h5 id="灰色预测的实例"><a href="#灰色预测的实例" class="headerlink" title="灰色预测的实例"></a>灰色预测的实例</h5></li>
 </ul>
-<p>1.首先准备数据，由于本人最近参加了数学建模美赛，故使用美赛中的数据作为本例的数据。以az的天然气能源作为原始数据序列：</p>
+<p>1.首先准备数据，由于本人最近参加了数学建模美赛，故使用美赛mcm中c题的数据作为本例的数据。以az的天然气能源作为原始数据序列：</p>
 <table>
 <thead>
 <tr>
@@ -626,15 +628,7 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数模</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -642,11 +636,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">语法</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">书评</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">语法</a>
               </li>
             
             <div class="clearfix"></div>
