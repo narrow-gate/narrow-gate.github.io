@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="YUAN233&#39;S blog">
 <meta property="og:description" content="数学建模美赛于昨天刚结束，这次比赛和队友之间配合特别默契，虽然不确定他们能不能看到，但是还是想对他们表达一下感谢，大家在一起学习的时候感觉特别好，希望有机会可以继续一起学习呀。 通过这次比赛还了解到了很多的东西，需要填的坑也蛮多，鉴于昨天有点辛苦，故今天想继续填坑之旅，首先要解决的是时间序列这个问题。好了闲话不多说了，下面谈一下我的理解。  简介  时间序列是指将某种现象某一个统计指标在不同时间上">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-02-26T05:37:06.243Z">
+<meta property="og:updated_time" content="2018-02-27T06:47:57.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="时间序列">
 <meta name="twitter:description" content="数学建模美赛于昨天刚结束，这次比赛和队友之间配合特别默契，虽然不确定他们能不能看到，但是还是想对他们表达一下感谢，大家在一起学习的时候感觉特别好，希望有机会可以继续一起学习呀。 通过这次比赛还了解到了很多的东西，需要填的坑也蛮多，鉴于昨天有点辛苦，故今天想继续填坑之旅，首先要解决的是时间序列这个问题。好了闲话不多说了，下面谈一下我的理解。  简介  时间序列是指将某种现象某一个统计指标在不同时间上">
@@ -270,13 +270,19 @@ for j=6:20
 </ul>
 <p>一次移动平均实际上认为最近N期数据对未来值影响相同，都加权$\frac{1}{N}$;而N期以前的数据对未来值没有影响，加权为0.但是二次以及更高次移动平均数的权数却不是$\frac{1}{N}$，且次数越高，权数的结构越复杂，但永远保持对称的权数，即两端项权数小，中间项权数大，不符合一般系统的动态性。一般来说历史数据对未来值得影响是随时间间隔的增长而递减的。所以，更切合实际的方法应是对各期观测值依时间顺序进行加权平均作为预测值。指数平滑法可以满足。</p>
 <p><strong>一次指数平滑法</strong></p>
-<p>设时间序列为$y_1,y_2,…y_t,…\alpha为加权系数$，$0&lt;\alpha&lt;1$,一次指数平滑公式为：</p>
+<p>1）设时间序列为$y_1,y_2,…y_t,…\alpha为加权系数$，$0&lt;\alpha&lt;1$,一次指数平滑公式为：</p>
 <p>$S_t^{(1)}=\alpha y_t+(1-\alpha)S_{t-1}^{(1)}=S_{t-1}^{(1)}+\alpha(y_t-S_{t-1}^{(1)})​$</p>
 <p>上式由移动平均公式改进而来的。由前面的移动平均数的递推公式为：$M_{t}^{(1)}=M_{t-1}^{(1)}+\frac{y_{t}-y_{t-N}}{N}$，以$M_{t-1}^{(1)}$作为$y_{t-N}$的最佳估计，则有</p>
 <p>$M_{t}^{(1)}=M_{t-1}^{(1)}+\frac{y_{t}-M_{t-1}^{(1)}}{N}=\frac{y_{t}}{N}+（1-\frac{1}{N}）M_{t-1}^{(1)}$</p>
 <p>令$\alpha=\frac{1}{N}$,以$S_t^{(1)}代替M_t^{(1)}$,即得：$S_t^{(1)}=\alpha y_t+(1-\alpha)S_{t-1}^{(1)}$</p>
 <p>为了进一步理解指数平滑的实质，把上式一次展开，有</p>
-<p>$S_t^{(1)}=\alpha y_t+(1-\alpha)[\alpha y_{t-1}+（1-\alpha)S_{t-2}^{(1)}=…=a\sum\limits^{\infty}_{j=0}(1-\alpha)^j y_{t-j}$</p>
+<p>$S_t^{(1)}=\alpha y_t+(1-\alpha)[\alpha y_{t-1}+（1-\alpha)S_{t-2}^{(1)}]=…=a\sum\limits^{\infty}_{j=0}(1-\alpha)^j y_{t-j}$</p>
+<p>上式表明$S_t^{(1)}$是全部历史数据的加权平均，加权系数分别为$\alpha,\alpha(1-\alpha),\alpha(1-\alpha)^2,L$,显然有：</p>
+<p>$\sum\limits^{\infty}_{j=0}\alpha(1-\alpha)^j=\frac{\alpha}{1-(1-\alpha)}=1$</p>
+<p>由于加权系数符合指数规律，又具有平滑数据的功能，故称为指数平滑。以这种平滑值进行预测，就是一次指数平滑法，预测模型为：</p>
+<p>$\hat y_{t+1}=S_t  即\hat y_{t+1}=\alpha y_t +(1-\alpha)\hat y_t$也就是以第t期指数平滑值作t+1期预测值。</p>
+<p>2）加权系数的选择</p>
+<p>在进行指数平滑时，加权系数的选择是很重要的。由上式可以看出，$\alpha$的大小规定了在新预测值中新数据和原预测值所占的比重</p>
 
       
 
@@ -617,19 +623,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数模</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">matlab</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">语法</a>
+                <a href="javascript:void(0)" class="js-tag color3">杂谈</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -637,7 +635,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">matlab</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">书评</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">语法</a>
               </li>
             
             <div class="clearfix"></div>
